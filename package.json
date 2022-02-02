@@ -1,0 +1,25 @@
+{
+  "name": "mongodb-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.17.2",
+    "mongoose": "^6.1.10",
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CannonWilson/MongoDB-Express.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CannonWilson/MongoDB-Express/issues"
+  },
+  "homepage": "https://github.com/CannonWilson/MongoDB-Express#readme"
+}
