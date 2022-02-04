@@ -3,6 +3,31 @@ const {MongoClient} = require('mongodb')
 const parser = require('body-parser')
 require('dotenv/config')
 
+//////// Database setup
+
+async function listDatabases(client) {
+    const databasesList = await client.db().admin().listDatabases();
+
+    console.log("Databases:");
+    databasesList.databases.forEach(db => console.log(` - ${db.name}`));
+}
+
+// Connect to the database
+const url = process.env.DB_CONNECTION // My username and password for my cluster is stored in a .env file
+const client = new MongoClient(url)
+try {
+    client.connect( () => {
+        console.log("connected to DB")
+        listDatabases(client)
+    })
+} catch(err) {
+    console.log(err)
+}
+
+
+
+
+/////// Express app and routes
 const app = express()
 
 app.use(parser.urlencoded({extended: true})) // won't work without body-parser middleware
@@ -10,16 +35,6 @@ app.use(parser.urlencoded({extended: true})) // won't work without body-parser m
 app.get('/', (req, res) => {
     res.sendFile(__dirname + "/test.html")
 })
-
-const url = process.env.DB_CONNECTION
-const client = new MongoClient(url)
-try {
-    client.connect( () => {
-        console.log("connected to DB")
-    })
-} catch(err) {
-    console.log(err)
-}
 
 app.post('/api/users', (req, res) => {
     const obj = {
@@ -56,4 +71,6 @@ app.get('/api/users', (req, res) => {
     find()
 })
 
-app.listen(3000)
+app.listen(3000, () => {
+    console.log("App created. You can view it at localhost:3000 in the browser.")
+})

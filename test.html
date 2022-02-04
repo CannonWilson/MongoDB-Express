@@ -5,10 +5,13 @@
     <title>Title</title>
 </head>
 <body>
+<h1>We need your help.</h1>
+<p>Superheroes are running amok. If you know anything about their real identities, tell us below.</p>
+<hr />
 <form method="post" action="/api/users">
 
     <input name="superName" placeholder="Superhero name: ">
-    <input name="normalName" placeholder="Normal name: ">
+    <input name="normalName" placeholder="Real name: ">
     <button>Insert New Document</button>
     <p id="dataP"></p>
 </form>
@@ -22,7 +25,7 @@
         // Add all objects in one long string
         // document.getElementById('dataP').innerHTML = JSON.stringify(data);
 
-        // Make it pretty
+        // Or, you can make it pretty
         let str = "<ul>"
         for (let i = 0; i < data.length; i++) {
             str += `<li>${data[i].superName}</li>`
