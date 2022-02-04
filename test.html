@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="/api/users">
+
+    <input name="superName" placeholder="Superhero name: ">
+    <input name="normalName" placeholder="Normal name: ">
+    <button>Insert New Document</button>
+    <p id="dataP"></p>
+</form>
+
+<script>
+
+    async function load() {
+        let res = await fetch('/api/users')
+        let data = await res.json()
+
+        // Add all objects in one long string
+        // document.getElementById('dataP').innerHTML = JSON.stringify(data);
+
+        // Make it pretty
+        let str = "<ul>"
+        for (let i = 0; i < data.length; i++) {
+            str += `<li>${data[i].superName}</li>`
+        }
+        str += "</ul>"
+        document.getElementById("dataP").innerHTML = str;
+    }
+    load()
+
+</script>
+
+</body>
+</html>
